@@ -1,3 +1,20 @@
+GIT
+  remote: https://github.com/cheald/plucky
+  revision: 59730d309b02de274b642efdcbff450bf71f55f6
+  branch: upstream
+  specs:
+    plucky (0.6.3)
+      mongo (~> 1.5)
+
+PATH
+  remote: /var/www/repos/mongomapper
+  specs:
+    mongo_mapper (0.12.0)
+      activemodel (~> 3.0)
+      activesupport (~> 3.0)
+      mongo (~> 1.8)
+      plucky (~> 0.6.3)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -8,16 +25,13 @@ GEM
       i18n (= 0.6.1)
       multi_json (~> 1.0)
     bson (1.9.0)
+    bson (1.9.0-java)
     bson_ext (1.9.0)
       bson (~> 1.9.0)
     builder (3.0.4)
     i18n (0.6.1)
     mongo (1.9.0)
       bson (~> 1.9.0)
-    mongo_mapper (0.12.0)
-      activemodel (~> 3.0)
-      activesupport (~> 3.0)
-      plucky (~> 0.5.2)
     mongoid (3.1.4)
       activemodel (~> 3.2)
       moped (~> 1.4)
@@ -26,17 +40,17 @@ GEM
     moped (1.5.0)
     multi_json (1.7.7)
     origin (1.1.0)
-    plucky (0.5.2)
-      mongo (~> 1.5)
     ruby-prof (0.13.0)
     tzinfo (0.3.37)
 
 PLATFORMS
+  java
   ruby
 
 DEPENDENCIES
   bson_ext
   mongo
-  mongo_mapper
+  mongo_mapper!
   mongoid
+  plucky!
   ruby-prof
