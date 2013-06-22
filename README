@@ -1,0 +1,6 @@
+How to run:
+
+    bundle install
+    MONGOID_ENV=production bundle exec ruby mongo_orm_benchmark.rb
+
+If you want profiles, comment out the block at the bottom. Callgrind traces will be generated per driver.

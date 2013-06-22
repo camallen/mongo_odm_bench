@@ -44,25 +44,12 @@ Benchmark.bm do |x|
   x.report("    Mongoid Insert") { INSERTS.times { MongoidUser.create(document) } }
 end
 
-# GC.start; GC.disable
-# MMUser.first.tap do |rec|
-#   document.each do |key, val|
-#     raise "Mismatch [MM]: Expected %s, got %s for %s" % [val, rec.send(key), key] unless rec.send(key) == val
-#   end
-# end
-#
-# GC.start; GC.disable
-# MongoidUser.first.tap do |rec|
-#   document.each do |key, val|
-#     raise "Mismatch [Mongoid]: Expected %s, got %s for %s" % [val, rec.send(key), key] unless rec.send(key) == val
-#   end
-# end
-#
-[1, 25, 100, 500, 1000].each do |batch|
-  GC.start; GC.disable
-  Benchmark.bm do |x|
-    x.report("MongoMapper Read #{batch}") { LOOPS.times { MMUser.limit(batch).to_a } }
-    x.report("    Mongoid Read #{batch}") { LOOPS.times { MongoidUser.limit(batch).to_a } }
+Benchmark.bm do |x|
+  [1, 25, 100, 500, 1000].each do |batch|
+    GC.start; GC.disable
+    x.report("MongoMapper Read %-10s batches of %-10s" % [LOOPS * batch, batch]) { LOOPS.times { MMUser.limit(batch).to_a } }
+    GC.start; GC.disable
+    x.report("    Mongoid Read %-10s batches of %-10s" % [LOOPS * batch, batch]) { LOOPS.times { MongoidUser.limit(batch).to_a } }
   end
 end
 
